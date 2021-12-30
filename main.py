@@ -16,11 +16,20 @@ pygame.init()
 clock = pygame.time.Clock()
 
 def main():
+    flies = []
+    buttons = []
+    background = Background()
     player = Player()
     DISPLAY=pygame.display.set_mode((500,400),0,32)
     pygame.display.set_caption('FlyNet')
     pygame.display.set_icon(Fly().sprite)
     WHITE=(255,255,255)
+    # getting 5 flies
+    for i in range(5): flies.append(Fly())
+    # now looping through the beans list
+    for fly in flies:
+        fly.position.xy = random.randrange(0, DISPLAY.get_width() - fly.sprite.get_width()), flies.index(fly)*-200 - player.position.y
+        
     
 #get fonts
 #get some images
@@ -28,13 +37,7 @@ def main():
 #colors
 #variables
 #creating Player object
-    player = Player()
-#creating flies and buttons list 
-    flies = []
-    buttons = []
-    background = Background()
-
-    
+#creating flies and buttons list  
 #Main game loop
 #Events
 #Update game elements
@@ -63,6 +66,9 @@ def main():
         DISPLAY.fill(WHITE)
         DISPLAY.blit(background.sprite, (background.position, background.position))
         DISPLAY.blit(player.currentNet, (player.position.x, player.position.y))
+        
+        for fly in flies:
+            DISPLAY.blit(fly.sprite, (fly.position.x, fly.position.y))
         pygame.display.update()
         pygame.time.delay(10)
         clock.tick(100)
