@@ -10,6 +10,10 @@ from pygame.math import Vector2
 from pygame.locals import *
 from player import Player
 from fly import Fly
+from background import Background
+
+pygame.init()
+clock = pygame.time.Clock()
 
 def main():
     player = Player()
@@ -26,12 +30,16 @@ def main():
 #creating Player object
     player = Player()
 #creating flies and buttons list 
-    flies = [] 
+    flies = []
     buttons = []
-
+    background = Background()
 
     
-# Main game loop
+#Main game loop
+#Events
+#Update game elements
+#Draw surface
+#Show surface
     while True:
         for event in pygame.event.get():
             if event.type==QUIT:
@@ -39,19 +47,23 @@ def main():
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    player.velocity.y = -1
+                    player.velocity.y = -3
         player.position.xy += player.velocity.xy
         player.velocity.xy += player.acceleration.xy
         if player.position.x < 0:
-            player.velocity.x = 1
-        if player.position.x + 100 > DISPLAY.get_width():
-            player.velocity.x = -0.1
+            player.velocity.x = 3
+            player.currentNet = player.NetRight
+        if player.position.x + 20 > DISPLAY.get_width():
+            player.velocity.x = -3
+            player.currentNet = player.NetLeft
         if player.position.y < 0:
-            player.velocity.y = 1
-        if player.position.y +20> DISPLAY.get_height():
-               player.velocity.y = -1
+            player.velocity.y = 3
+        if player.position.y + 30 > DISPLAY.get_height():
+            player.velocity.y = -3
         DISPLAY.fill(WHITE)
-        DISPLAY.blit(player.rightSprite, (player.position.x, player.position.y))
+        DISPLAY.blit(background.sprite, (background.position, background.position))
+        DISPLAY.blit(player.currentNet, (player.position.x, player.position.y))
         pygame.display.update()
-
+        pygame.time.delay(10)
+        clock.tick(100)
 main()

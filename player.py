@@ -10,8 +10,8 @@ import pygame
 
 class Player:
     position = pygame.Vector2(100, 100)
-    velocity = pygame.Vector2(3, 0)
-    acceleration = pygame.Vector2(0, 0.01)
-    rightSprite = pygame.image.load("/Users/daliagala/Documents/flynet/Net_pixel.gif")
-    leftSprite = pygame.transform.flip(rightSprite, True, False)
-    currentSprite = rightSprite
+    velocity = pygame.Vector2(1, 0)
+    acceleration = pygame.Vector2(0, 0.1)
+    NetLeft = pygame.image.load("/Users/daliagala/Documents/flynet/Net_pixel.gif")
+    NetRight = pygame.transform.flip(NetLeft, True, False)
+    currentNet = NetLeft

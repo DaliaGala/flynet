@@ -9,5 +9,5 @@ Created on Tue Dec 28 22:54:46 2021
 import pygame
 class Background:
     def __init__(self):
-        self.sprite = pygame.image.load('background.jpb')
+        self.sprite = pygame.image.load('background.jpg')
         self.position = 0
