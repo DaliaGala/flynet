@@ -11,4 +11,4 @@ class Fly:
     def __init__(self):
         self.price = 3
         self.level = 1   
-    sprite = pygame.image.load("/Users/daliagala/Documents/flynet/Net_pixel.gif")
+    sprite = pygame.image.load("assets/Fly_pixel.gif")
