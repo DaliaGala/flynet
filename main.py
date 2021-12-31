@@ -15,6 +15,8 @@ from background import Background
 pygame.init()
 clock = pygame.time.Clock()
 
+        
+
 def main():
     flies = []
     buttons = []
@@ -25,14 +27,12 @@ def main():
     pygame.display.set_icon(Fly().sprite)
     WHITE=(255,255,255)
     # getting 5 flies
-    for i in range(5): flies.append(Fly())
+    for i in range(10): flies.append(Fly())
     # now looping through the beans list
     for fly in flies:
-        fly.position.xy = random.randrange(0, DISPLAY.get_width() - fly.sprite.get_width()), flies.index(fly)*-200 - player.position.y
-        
-    
+        fly.position.xy = random.randrange(0, DISPLAY.get_width() - fly.sprite.get_width()), random.randrange(0, DISPLAY.get_height() - fly.sprite.get_height())
 #get fonts
-#get some images
+#get some images remember .convert()
 #get sounds
 #colors
 #variables
@@ -64,11 +64,15 @@ def main():
         if player.position.y + 30 > DISPLAY.get_height():
             player.velocity.y = -3
         DISPLAY.fill(WHITE)
-        DISPLAY.blit(background.sprite, (background.position, background.position))
-        DISPLAY.blit(player.currentNet, (player.position.x, player.position.y))
+        background.position += 1
+        DISPLAY.blit(background.sprite.convert(), (0, background.position))
+        DISPLAY.blit(background.sprite.convert(), (0, background.position - DISPLAY.get_height()))
+        if background.position >= DISPLAY.get_height():
+            background.position = 0
+        DISPLAY.blit(player.currentNet.convert(), (player.position.x, player.position.y))
         
         for fly in flies:
-            DISPLAY.blit(fly.sprite, (fly.position.x, fly.position.y))
+            DISPLAY.blit(fly.sprite.convert(), (fly.position.x, fly.position.y))
         pygame.display.update()
         pygame.time.delay(10)
         clock.tick(100)

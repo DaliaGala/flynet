@@ -9,5 +9,5 @@ Created on Tue Dec 28 22:54:46 2021
 import pygame
 class Background:
     def __init__(self):
-        self.sprite = pygame.image.load('assets/background.jpg')
+        self.sprite = pygame.image.load('assets/flynet_background2.png')
         self.position = 0
